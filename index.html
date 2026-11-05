@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Friends Server</title>
+    <title>Friends Server - Control Panel</title>
     <style>
         body {
             background: #111;
             color: #fff;
             font-family: Arial, sans-serif;
-            text-align: center;
             margin: 0;
             padding: 20px;
         }
@@ -17,13 +16,14 @@
             color: #ff4444;
             font-weight: bold;
             font-size: 15px;
+            text-align: center;
             margin-bottom: 15px;
         }
         .box {
             background: #1a1a1a;
-            max-width: 400px;
+            max-width: 600px;
             margin: 0 auto;
-            padding: 25px;
+            padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
@@ -31,12 +31,14 @@
             color: #58a6ff;
             font-size: 22px;
             margin-bottom: 5px;
+            text-align: center;
         }
         .status {
             color: #238636;
             font-weight: bold;
             font-size: 14px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            text-align: center;
         }
         .ip-box {
             background: #111;
@@ -45,9 +47,24 @@
             border-radius: 8px;
             font-size: 15px;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             border: 1px dashed #444;
             cursor: pointer;
+            text-align: center;
+        }
+        .section-title {
+            color: #8b949e;
+            font-size: 13px;
+            margin: 15px 0 8px 0;
+            text-transform: uppercase;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 4px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
         }
         .btn {
             background: #21262d;
@@ -56,16 +73,18 @@
             padding: 10px;
             width: 100%;
             border-radius: 8px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
-            margin-bottom: 10px;
             cursor: pointer;
+            text-align: center;
         }
         .btn:hover { background: #30363d; }
         .btn-green { background: #238636; border: none; }
         .btn-green:hover { background: #2ea043; }
         .btn-red { background: #da3633; border: none; }
         .btn-red:hover { background: #f85149; }
+        .btn-blue { background: #1f6feb; border: none; grid-column: span 2; }
+        .btn-blue:hover { background: #388bfd; }
     </style>
 </head>
 <body>
@@ -74,16 +93,55 @@
 
     <div class="box">
         <h1>Friends Server</h1>
-        <div class="status">● Server Online</div>
+        <div class="status">● Server Online (السيرفر يعمل)</div>
 
         <div class="ip-box" onclick="navigator.clipboard.writeText('play.friendsserver.com'); alert('IP Copied!');">
             play.friendsserver.com
         </div>
 
-        <button class="btn btn-green" onclick="alert('Starting Server...');">Start Server</button>
-        <button class="btn btn-red" onclick="alert('Stopping Server...');">Stop Server</button>
-        <button class="btn" onclick="alert('Settings Opened!');">Server Settings</button>
-        <button class="btn" onclick="alert('Mods Menu Opened!');">Mods Management</button>
+        <!-- تسجيل الدخول بالرمز -->
+        <button class="btn btn-blue" onclick="
+            let email = prompt('Enter your Email Address:');
+            if(email) {
+                let code = Math.floor(1000 + Math.random() * 9000);
+                alert('Verification code sent to ' + email + '\n(Simulated Code: ' + code + ')');
+                let userCode = prompt('Enter the 4-digit code sent to your email:');
+                if(userCode == code) {
+                    alert('Login Successful! Welcome, ' + email);
+                } else if(userCode) {
+                    alert('Incorrect verification code!');
+                }
+            }
+        ">Login with Email Code (تسجيل الدخول بالبريد)</button>
+
+        <div class="section-title">Power Control (التحكم بالطاقة)</div>
+        <div class="grid">
+            <button class="btn btn-green" onclick="alert('Starting Server... (جاري تشغيل السيرفر)');">Start Server (بدء)</button>
+            <button class="btn btn-red" onclick="alert('Stopping Server... (جاري إيقاف السيرفر)');">Stop Server (إيقاف)</button>
+        </div>
+        <button class="btn" onclick="alert('Restarting Server...');">Restart Server (إعادة تشغيل)</button>
+
+        <div class="section-title">Mods Management (إدارة المودات)</div>
+        <div class="grid">
+            <button class="btn" onclick="alert('Add New Mod');">Add New Mod (إضافة)</button>
+            <button class="btn" onclick="alert('Update Mods');">Update Mods (تحديث)</button>
+            <button class="btn" onclick="alert('Installed Mods');">Installed Mods (المثبتة)</button>
+            <button class="btn btn-red" onclick="alert('Delete Mod');">Delete Mod (حذف)</button>
+        </div>
+
+        <div class="section-title">World & Players (إعدادات العالم واللاعبين)</div>
+        <div class="grid">
+            <button class="btn" onclick="alert('Create New World');">Create World (عالم جديد)</button>
+            <button class="btn" onclick="alert('Change Difficulty');">Difficulty (الصعوبة)</button>
+            <button class="btn" onclick="alert('Players List');">Players List (اللاعبين)</button>
+            <button class="btn" onclick="alert('Server Settings');">Settings (الإعدادات)</button>
+        </div>
+
+        <div class="section-title">Quick Actions (إجراءات سريعة)</div>
+        <div class="grid">
+            <button class="btn" onclick="alert('Changes Saved!');">Save Changes (حفظ)</button>
+            <button class="btn btn-red" onclick="alert('Logs Cleared!');">Clear Logs (مسح السجل)</button>
+        </div>
     </div>
 
 </body>
