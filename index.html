@@ -30,7 +30,7 @@
             text-align: center;
         }
         
-        /* الدائرة المتحركة المطابقة للصورة تماماً */
+        /* الدائرة المتحركة في الأعلى */
         .loader {
             width: 50px;
             height: 50px;
@@ -110,10 +110,10 @@
             color: #fff;
         }
 
-        /* تصميم السيرفر بعد تسجيل الدخول */
+        /* تصميم صفحة السيرفر المطابقة لصورتك */
         .server-header {
-            background: #1f2937;
-            border: 1px solid #374151;
+            background: #161b22;
+            border: 1px solid #30363d;
             border-radius: 12px;
             padding: 12px 15px;
             margin-bottom: 15px;
@@ -128,55 +128,14 @@
         }
         .server-code {
             font-size: 11px;
-            color: #9ca3af;
+            color: #8b949e;
         }
-        .status-offline {
-            background: #dc2626;
-            color: white;
-            text-align: center;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 15px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            background-color: #da3633;
+            border-radius: 50%;
         }
-        .status-online {
-            background: #059669;
-            color: white;
-            text-align: center;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 15px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .start-btn {
-            background: #059669;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 16px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            transition: background 0.2s;
-        }
-        .start-btn:hover { background: #047857; }
-
         .grid-menu {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -184,9 +143,9 @@
             margin-bottom: 15px;
         }
         .menu-btn {
-            background: #1f2937;
+            background: #21262d;
             color: #f0f6fc;
-            border: 1px solid #374151;
+            border: 1px solid #30363d;
             padding: 12px 15px;
             border-radius: 10px;
             font-size: 13px;
@@ -197,12 +156,22 @@
             align-items: center;
             justify-content: flex-end;
             gap: 10px;
-            width: 100%;
             transition: all 0.2s;
         }
-        .menu-btn:hover { background: #374151; }
-        .btn-full { grid-column: span 2; }
-        
+        .menu-btn:hover {
+            background: #30363d;
+            border-color: #8b949e;
+        }
+        .menu-btn span {
+            font-size: 16px;
+        }
+        .btn-full {
+            grid-column: span 2;
+        }
+        .btn-warning {
+            border-color: rgba(210, 153, 34, 0.4);
+        }
+
         #dashboard { display: none; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
@@ -213,8 +182,8 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: #111827;
-            border-top: 1px solid #1f2937;
+            background: #161b22;
+            border-top: 1px solid #30363d;
             display: none;
             justify-content: space-around;
             padding: 10px 0;
@@ -224,7 +193,7 @@
         .nav-item {
             background: transparent;
             border: none;
-            color: #9ca3af;
+            color: #8b949e;
             font-size: 12px;
             font-weight: 600;
             cursor: pointer;
@@ -232,7 +201,7 @@
             flex: 1;
         }
         .nav-item.active {
-            color: #60a5fa;
+            color: #58a6ff;
         }
         .nav-icon {
             font-size: 18px;
@@ -249,8 +218,8 @@
             <div class="creator-text">تم إنشاء هذا الموقع من قبل مهدي الظالمي</div>
             
             <div class="input-box">
-                <input type="text" id="userInput" class="input-field" placeholder="البريد الإلكتروني / اسم المستخدم">
-                <span class="input-icon">👤</span>
+                <input type="email" id="emailInput" class="input-field" placeholder="البريد الإلكتروني">
+                <span class="input-icon">📧</span>
             </div>
 
             <div class="input-box">
@@ -262,27 +231,21 @@
             <button class="btn-custom btn-register" onclick="alert('فتح صفحة إنشاء حساب جديد')">إنشاء حساب جديد</button>
         </div>
 
-        <!-- لوحة التحكم الرئيسية -->
+        <!-- لوحة التحكم الرئيسية (تظهر بعد تسجيل الدخول) -->
         <div id="dashboard">
             
-            <!-- قسم السيرفر -->
+            <!-- قسم السيرفر (مطابق لصورتك تماماً) -->
             <div id="tab-server" class="tab-content active">
-                <div class="card" style="text-align: right;">
+                <div class="card" style="text-align: right; padding: 20px;">
+                    <div style="font-size: 15px; font-weight: bold; margin-bottom: 15px; color: #8b949e; text-align: right;">السيرفر</div>
+                    
                     <div class="server-header">
-                        <div>
+                        <div class="status-dot"></div>
+                        <div style="text-align: right;">
                             <div class="server-name">Ahabha</div>
                             <div class="server-code">#It4t1NO6RwOSihNz</div>
                         </div>
-                        <div style="font-size: 20px;">🌍</div>
                     </div>
-
-                    <div id="serverStatus" class="status-offline">
-                        <span>●</span> غير متصل (Offline)
-                    </div>
-
-                    <button class="start-btn" onclick="toggleServer()">
-                        <span>⏻</span> <span id="startBtnText">بدء تشغيل (Start)</span>
-                    </button>
 
                     <div class="grid-menu">
                         <button class="menu-btn" onclick="alert('السيرفر (Server)');"><span>⚡</span> السيرفر</button>
@@ -297,7 +260,7 @@
                         <button class="menu-btn" onclick="alert('الملفات (Files)');"><span>📁</span> الملفات</button>
                         <button class="menu-btn" onclick="alert('العوالم (Worlds)');"><span>🌍</span> العوالم</button>
                         
-                        <button class="menu-btn btn-full" style="border-color: rgba(210, 153, 34, 0.4);" onclick="alert('نسخة احتياطية (Backup)');"><span>⚠️</span> نسخة احتياطية</button>
+                        <button class="menu-btn btn-full btn-warning" onclick="alert('نسخة احتياطية (Backup)');"><span>⚠️</span> نسخة احتياطية</button>
                         <button class="menu-btn btn-full" onclick="alert('الوصول (Access)');"><span>👤</span> الوصول</button>
                     </div>
                 </div>
@@ -306,19 +269,19 @@
             <!-- قسم الحساب -->
             <div id="tab-account" class="tab-content">
                 <div class="card" style="text-align: center;">
-                    <h2 style="color: #60a5fa; margin-bottom: 10px; font-size: 18px;">إعدادات الحساب</h2>
-                    <p style="color: #9ca3af; font-size: 13px; margin-bottom: 15px;">تم تسجيل الدخول بنجاح</p>
-                    <button class="menu-btn" style="justify-content: center; margin-bottom: 10px;" onclick="alert('تغيير البريد');">تغيير البريد الإلكتروني</button>
-                    <button class="menu-btn" style="justify-content: center; background: #dc2626;" onclick="location.reload();">تسجيل الخروج</button>
+                    <h2 style="color: #58a6ff; margin-bottom: 10px; font-size: 18px;">إعدادات الحساب</h2>
+                    <p style="color: #8b949e; font-size: 13px; margin-bottom: 15px;">تم تسجيل الدخول بنجاح</p>
+                    <button class="menu-btn" style="justify-content: center; width: 100%; margin-bottom: 10px;" onclick="alert('تغيير البريد');">تغيير البريد الإلكتروني</button>
+                    <button class="menu-btn" style="justify-content: center; width: 100%; background: #da3633;" onclick="location.reload();">تسجيل الخروج</button>
                 </div>
             </div>
 
             <!-- قسم المساعدة -->
             <div id="tab-help" class="tab-content">
                 <div class="card" style="text-align: center;">
-                    <h2 style="color: #60a5fa; margin-bottom: 10px; font-size: 18px;">المساعدة والدعم</h2>
-                    <p style="color: #9ca3af; font-size: 13px; margin-bottom: 15px;">تحتاج إلى مساعدة في إدارة السيرفر؟</p>
-                    <button class="menu-btn" style="justify-content: center;" onclick="alert('الاتصال بالمالك: مهدي الظالمي');">تواصل مع المالك (مهدي الظالمي)</button>
+                    <h2 style="color: #58a6ff; margin-bottom: 10px; font-size: 18px;">المساعدة والدعم</h2>
+                    <p style="color: #8b949e; font-size: 13px; margin-bottom: 15px;">تحتاج إلى مساعدة في إدارة السيرفر؟</p>
+                    <button class="menu-btn" style="justify-content: center; width: 100%;" onclick="alert('الاتصال بالمالك: مهدي الظالمي');">تواصل مع المالك (مهدي الظالمي)</button>
                 </div>
             </div>
 
@@ -339,42 +302,23 @@
     </div>
 
     <script>
-        let isRunning = false;
-
         function handleLogin() {
-            let user = document.getElementById('userInput').value;
+            let email = document.getElementById('emailInput').value;
             let pass = document.getElementById('passInput').value;
 
-            if(!user || !pass) {
-                alert('الرجاء إدخال اسم المستخدم وكلمة المرور!');
+            if(!email || !email.includes('@')) {
+                alert('الرجاء إدخال بريد إلكتروني صحيح!');
+                return;
+            }
+            if(!pass) {
+                alert('الرجاء إدخال كلمة المرور!');
                 return;
             }
 
-            alert('تم تسجيل الدخول بنجاح! أهلاً بك');
+            alert('تم تسجيل الدخول بنجاح!');
             document.getElementById('login-section').style.display = 'none';
             document.getElementById('dashboard').style.display = 'block';
             document.getElementById('bottomNav').style.display = 'flex';
-        }
-
-        function toggleServer() {
-            let statusDiv = document.getElementById('serverStatus');
-            let btnText = document.getElementById('startBtnText');
-            
-            if(!isRunning) {
-                alert('جاري تشغيل السيرفر...');
-                isRunning = true;
-                statusDiv.className = 'status-online';
-                statusDiv.innerHTML = '<span>●</span> متصل (Online)';
-                btnText.innerText = 'إيقاف السيرفر (Stop)';
-                document.querySelector('.start-btn').style.background = '#dc2626';
-            } else {
-                alert('جاري إيقاف السيرفر...');
-                isRunning = false;
-                statusDiv.className = 'status-offline';
-                statusDiv.innerHTML = '<span>●</span> غير متصل (Offline)';
-                btnText.innerText = 'بدء تشغيل (Start)';
-                document.querySelector('.start-btn').style.background = '#059669';
-            }
         }
 
         function switchTab(tabName, element) {
