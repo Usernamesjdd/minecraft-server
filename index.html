@@ -3,514 +3,272 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DRAXOR CRAFT - Control Panel</title>
+    <title>DRAXOR CRAFT - لوحة التحكم</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
-            background: #060814;
-            color: #f0f6fc;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            padding: 15px;
-            padding-bottom: 95px;
+            background-color: #0b0b14;
+            color: #fff;
+            padding-bottom: 70px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 10px;
+            background: linear-gradient(135deg, #111122, #1b1b3a);
+            border-bottom: 2px solid #3b82f6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+            margin-bottom: 15px;
+        }
+        .header h1 {
+            font-size: 24px;
+            color: #00ff66;
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.5);
+            margin-bottom: 5px;
+        }
+        .server-status-badge {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(0, 255, 102, 0.1);
+            border: 1px solid #00ff66;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #00ff66;
+            box-shadow: 0 0 8px rgba(0, 255, 102, 0.3);
         }
         .container {
-            max-width: 480px;
+            padding: 0 12px;
+            max-width: 600px;
             margin: 0 auto;
         }
-        
-        /* شاشة تسجيل الدخول */
-        #login-section {
-            background: linear-gradient(135deg, #0d1124, #121829);
-            border: 2px solid #2563eb;
-            border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 0 25px rgba(37, 99, 235, 0.3);
-            text-align: center;
-            margin-top: 40px;
-        }
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-top: 4px solid #60a5fa;
-            border-radius: 50%;
-            margin: 0 auto 15px auto;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .creator-badge {
-            color: #38bdf8;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-        .input-box {
-            position: relative;
-            margin-bottom: 15px;
-        }
-        .input-field {
-            width: 100%;
-            background: #030712;
-            border: 1px solid #1e293b;
-            border-radius: 12px;
-            padding: 14px 45px 14px 15px;
-            color: #fff;
-            font-size: 14px;
-            outline: none;
-            text-align: right;
-        }
-        .input-icon {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #94a3b8;
-            font-size: 16px;
-        }
-        .btn-main {
-            width: 100%;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
-        }
-
-        /* لوحة التحكم الرئيسية */
-        #dashboard { display: none; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-
-        /* رأس الصفحة المطابق للصورة تماماً */
-        .header-banner {
-            background: linear-gradient(135deg, #111827, #1f2937);
-            border: 2px solid #10b981;
-            border-radius: 18px;
-            padding: 15px;
-            text-align: center;
-            margin-bottom: 15px;
-            box-shadow: 0 0 20px rgba(16, 185, 129, 0.25);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .copy-icon-box {
-            background: #1f2937;
-            border: 2px solid #8b5cf6;
-            border-radius: 12px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #c084fc;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
-        }
-        .server-title-area {
-            flex-grow: 1;
-            text-align: center;
-        }
-        .server-title {
-            font-size: 19px;
-            font-weight: 900;
-            color: #fff;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .server-ready-badge {
-            background: rgba(16, 185, 129, 0.2);
-            color: #34d399;
-            border: 1px solid rgba(16, 185, 129, 0.4);
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            display: inline-block;
-        }
-
-        /* شبكة الأزرار الأربعة العليا */
         .grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 15px;
+            gap: 10px;
+            margin-bottom: 10px;
         }
-        .dashboard-btn {
-            border-radius: 16px;
-            padding: 16px 15px;
-            color: #fff;
-            cursor: pointer;
-            text-align: right;
+        .card {
+            background: #151528;
+            border-radius: 12px;
+            padding: 15px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+            text-decoration: none;
+            color: #fff;
+            transition: 0.3s;
         }
-        .dashboard-btn.purple {
-            background: linear-gradient(135deg, #3b0764, #581c87);
-            border: 2px solid #a855f7;
-            box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+        .card.purple { border-color: #8b5cf6; box-shadow: inset 0 0 10px rgba(139, 92, 246, 0.2); }
+        .card.blue { border-color: #3b82f6; box-shadow: inset 0 0 10px rgba(59, 130, 246, 0.2); }
+        .card.green { border-color: #00ff66; box-shadow: inset 0 0 10px rgba(0, 255, 102, 0.2); }
+        .card.orange { border-color: #f97316; box-shadow: inset 0 0 10px rgba(249, 115, 22, 0.2); }
+        
+        .card-content h3 {
+            font-size: 16px;
+            margin-bottom: 3px;
         }
-        .dashboard-btn.blue {
-            background: linear-gradient(135deg, #1e3a8a, #172554);
-            border: 2px solid #3b82f6;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        .card-content p {
+            font-size: 12px;
+            color: #aaa;
         }
-        .dashboard-btn.orange {
-            background: linear-gradient(135deg, #78350f, #451a03);
-            border: 2px solid #f59e0b;
-            box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);
+        .card-icon {
+            font-size: 24px;
         }
-        .dashboard-btn.green {
-            background: linear-gradient(135deg, #064e3b, #022c22);
-            border: 2px solid #10b981;
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
-        }
-        .btn-icon-box {
-            font-size: 22px;
-            background: rgba(255,255,255,0.08);
-            width: 42px;
-            height: 42px;
+        .status-box {
+            background: #151528;
+            border: 1px solid #3b82f6;
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
         }
-
-        /* بطاقة حالة السيرفر الوسطى */
-        .status-card {
-            background: linear-gradient(135deg, #0f172a, #1e1b4b);
-            border: 2px solid #3b82f6;
-            border-radius: 18px;
-            padding: 16px;
-            margin-bottom: 15px;
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.25);
-        }
-        .status-header-flex {
+        .status-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 12px;
         }
-        .online-badge {
-            background: #065f46;
-            color: #34d399;
-            border: 1px solid #10b981;
-            padding: 4px 14px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        
-        /* الصندوق الداخلي */
-        .inner-status-box {
-            background: #16162c;
-            border: 2px solid #10b981;
-            border-radius: 14px;
-            padding: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .status-inner {
+            display: grid;
+            grid-template-columns: 1fr auto;
             gap: 10px;
-            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
-        }
-        .power-btn-red {
-            background: linear-gradient(135deg, #991b1b, #7f1d1d);
-            border: 2px solid #ef4444;
-            color: white;
-            padding: 12px 14px;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
-            display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 4px;
-            width: 105px;
-            text-align: center;
         }
-
-        /* زر تشغيل السيرفر الأخضر الكبير */
-        .power-btn-green {
-            background: linear-gradient(135deg, #059669, #047857);
-            border: 2px solid #34d399;
+        .stop-btn {
+            background: #ef4444;
             color: white;
-            width: 100%;
-            padding: 16px;
-            border-radius: 16px;
-            font-size: 17px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        /* زر إنشاء سيرفر جديد */
-        .create-server-card {
-            background: linear-gradient(135deg, #2e1065, #3b0764);
-            border: 2px solid #a855f7;
-            border-radius: 16px;
+            border: none;
             padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
-            cursor: pointer;
-        }
-
-        /* بنر الدعاية السفلي */
-        .promo-card {
-            background: linear-gradient(135deg, #1e1b4b, #311042);
-            border: 2px solid #8b5cf6;
-            border-radius: 18px;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 0 25px rgba(139, 92, 246, 0.35);
-        }
-        .promo-btn-small {
-            background: linear-gradient(135deg, #7c3aed, #6d28d9);
-            color: white;
-            border: 1px solid #c084fc;
-            padding: 6px 12px;
             border-radius: 10px;
-            font-size: 12px;
+            text-align: center;
             font-weight: bold;
-            cursor: pointer;
-            margin-top: 6px;
-            display: inline-block;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
         }
-
-        /* شريط التنقل السفلي */
-        .bottom-nav {
+        .start-btn {
+            background: linear-gradient(90deg, #00ff66, #10b981);
+            color: #0b0b14;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .banner-card {
+            background: linear-gradient(135deg, #1b1b3a, #2e1065);
+            border: 1px solid #8b5cf6;
+            border-radius: 14px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+        }
+        .navbar {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            background: #0b0f19;
-            border-top: 2px solid #1e293b;
-            display: none;
+            background: #111122;
+            border-top: 1px solid #3b82f6;
+            display: flex;
             justify-content: space-around;
             padding: 10px 0;
-            box-shadow: 0 -5px 25px rgba(0,0,0,0.9);
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.5);
             z-index: 1000;
         }
         .nav-item {
-            background: transparent;
-            border: none;
-            color: #64748b;
-            font-size: 11px;
-            font-weight: 600;
-            cursor: pointer;
             text-align: center;
-            flex: 1;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 12px;
         }
         .nav-item.active {
-            color: #c084fc;
-            text-shadow: 0 0 10px rgba(192, 132, 252, 0.5);
+            color: #00ff66;
         }
-        .nav-icon {
-            font-size: 20px;
+        .nav-item div {
+            font-size: 18px;
             margin-bottom: 2px;
         }
     </style>
 </head>
 <body>
 
+    <div class="header">
+        <h1>DRAXOR CRAFT 🟢</h1>
+        <div class="server-status-badge">
+            ● الخادم متصل وجاهز الآن
+        </div>
+    </div>
+
     <div class="container">
-        <!-- شاشة تسجيل الدخول -->
-        <div id="login-section">
-            <div class="loader"></div>
-            <div class="creator-badge">تم إنشاء الموقع بواسطة مهدي الظالمي</div>
-            
-            <div class="input-box">
-                <input type="text" id="userInput" class="input-field" placeholder="البريد الإلكتروني / اسم المستخدم">
-                <span class="input-icon">👤</span>
-            </div>
-
-            <div class="input-box">
-                <input type="password" id="passInput" class="input-field" placeholder="كلمة المرور">
-                <span class="input-icon">🔒</span>
-            </div>
-
-            <button class="btn-main" onclick="handleLogin()">تسجيل الدخول</button>
+        <!-- Grid Links -->
+        <div class="grid-2">
+            <a href="#" class="card blue">
+                <div class="card-content">
+                    <h3>حسابي</h3>
+                    <p>إدارة حسابك</p>
+                </div>
+                <div class="card-icon">👤</div>
+            </a>
+            <a href="#" class="card purple">
+                <div class="card-content">
+                    <h3>السيرفر</h3>
+                    <p>إدارة سيرفرك</p>
+                </div>
+                <div class="card-icon">🎛️</div>
+            </a>
         </div>
 
-        <!-- لوحة التحكم الرئيسية -->
-        <div id="dashboard">
-            
-            <!-- تبويب الرئيسية -->
-            <div id="tab-home" class="tab-content active">
-                
-                <div class="header-banner">
-                    <div class="copy-icon-box" onclick="alert('تم نسخ عنوان السيرفر بنجاح!')" title="نسخ">📋</div>
-                    <div class="server-title-area">
-                        <div class="server-title">DRAXOR CRAFT <span style="font-size: 14px;">🟢</span></div>
-                        <div class="server-ready-badge">🟢 الخادم متصل وجاهز الآن</div>
-                    </div>
+        <div class="grid-2">
+            <a href="#" class="card green">
+                <div class="card-content">
+                    <h3>مساعدة</h3>
+                    <p>دعم FAQ</p>
                 </div>
-
-                <div class="grid-2">
-                    <button class="dashboard-btn purple" onclick="switchTab('server', document.querySelectorAll('.nav-item')[2])">
-                        <div class="btn-icon-box">🎛️</div>
-                        <div style="text-align: right;">
-                            <div style="font-size: 15px; font-weight: bold;">السيرفر</div>
-                            <div style="font-size: 11px; color: #cbd5e1;">إدارة سيرفرك</div>
-                        </div>
-                    </button>
-                    
-                    <button class="dashboard-btn blue" onclick="switchTab('account', document.querySelectorAll('.nav-item')[0])">
-                        <div class="btn-icon-box">👤</div>
-                        <div style="text-align: right;">
-                            <div style="font-size: 15px; font-weight: bold;">حسابي</div>
-                            <div style="font-size: 11px; color: #94a3b8;">إدارة حسابك</div>
-                        </div>
-                    </button>
+                <div class="card-icon">🎧</div>
+            </a>
+            <a href="#" class="card orange">
+                <div class="card-content">
+                    <h3>التعليمات</h3>
+                    <p>كل ما تحتاج معرفته</p>
                 </div>
+                <div class="card-icon">❓</div>
+            </a>
+        </div>
 
-                <div class="grid-2" style="margin-bottom: 15px;">
-                    <button class="dashboard-btn orange" onclick="alert('قسم التعليمات وكل ما تحتاج معرفته')">
-                        <div class="btn-icon-box">❓</div>
-                        <div style="text-align: right;">
-                            <div style="font-size: 15px; font-weight: bold;">التعليمات</div>
-                            <div style="font-size: 11px; color: #fde68a;">كل ما تحتاج معرفته</div>
-                        </div>
-                    </button>
-
-                    <button class="dashboard-btn green" onclick="switchTab('help', document.querySelectorAll('.nav-item')[1])">
-                        <div class="btn-icon-box">🎧</div>
-                        <div style="text-align: right;">
-                            <div style="font-size: 15px; font-weight: bold;">مساعدة</div>
-                            <div style="font-size: 11px; color: #a7f3d0;">دعم FAQ</div>
-                        </div>
-                    </button>
-                </div>
-
-                <div class="status-card">
-                    <div class="status-header-flex">
-                        <div class="online-badge">● Online</div>
-                        <div style="font-weight: bold; font-size: 15px; display: flex; align-items: center; gap: 6px;">حالة السيرفر 📊</div>
-                    </div>
-
-                    <div class="inner-status-box">
-                        <div style="text-align: right; flex-grow: 1; padding-right: 5px;">
-                            <div style="font-size: 13px; color: #94a3b8; margin-bottom: 6px;">لاعبين: 0/20 👥</div>
-                            <div style="font-size: 13px; color: #94a3b8;">منذ: 0h 12m ⏱️</div>
-                        </div>
-                        
-                        <div style="display: flex; align-items: center; gap: 6px;">
-                            <div style="font-size: 20px;">📦</div>
-                            <div style="font-size: 20px;">🟩</div>
-                        </div>
-
-                        <button class="power-btn-red" onclick="alert('جاري إيقاف السيرفر...')">
-                            <span style="font-size: 16px;">⏹️</span>
-                            <span>إيقاف السيرفر</span>
-                        </button>
-                    </div>
-                </div>
-
-                <button class="power-btn-green" onclick="alert('جاري تشغيل السيرفر...')">
-                    ▶ تشغيل السيرفر
-                </button>
-
-                <div class="create-server-card" onclick="alert('إنشاء سيرفر جديد')">
-                    <div style="color: #c084fc; font-size: 18px;">‹</div>
-                    <div style="display: flex; align-items: center; gap: 12px; text-align: right;">
-                        <div>
-                            <div style="font-size: 15px; font-weight: bold;">إنشاء سيرفر جديد</div>
-                            <div style="font-size: 11px; color: #cbd5e1;">إبدأ سيرفرك الخاص الآن</div>
-                        </div>
-                        <div style="background: rgba(168, 85, 247, 0.2); border: 2px solid #a855f7; width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #c084fc;">➕</div>
-                    </div>
-                </div>
-
-                <div class="promo-card">
-                    <div style="text-align: right;">
-                        <div style="font-size: 15px; font-weight: bold; color: #c084fc; margin-bottom: 2px;">لعب بدون حدود</div>
-                        <div style="font-size: 13px; font-weight: bold; color: #fff; margin-bottom: 4px;">مع DRAXOR CRAFT</div>
-                        <button class="promo-btn-small" onclick="alert('البدء الآن')">إبدأ الآن ←</button>
-                    </div>
-                    <div style="font-size: 35px;">🪓⛏️</div>
-                </div>
-
+        <!-- Server Status Box -->
+        <div class="status-box">
+            <div class="status-header">
+                <strong>📊 حالة السيرفر</strong>
+                <span style="color: #00ff66; font-size: 13px;">● Online</span>
             </div>
-
-            <div id="tab-server" class="tab-content">
-                <div class="header-banner"><div class="server-title">إدارة السيرفر</div></div>
-                <div class="status-card" style="text-align: center; padding: 30px;">
-                    <p style="color: #94a3b8; font-size: 14px; margin-bottom: 15px;">إدارة ملفات وكونسول سيرفرك بكل سهولة</p>
-                    <button class="btn-main" onclick="alert('فتح وحدة التحكم والملفات')">فتح وحدة التحكم (Console)</button>
+            <div class="status-inner">
+                <div>
+                    <p style="font-size: 13px; color: #ccc; margin-bottom: 5px;">👥 لاعبين: 0/20</p>
+                    <p style="font-size: 13px; color: #ccc;">⏱️ منذ: 0h 12m</p>
+                </div>
+                <div class="stop-btn">
+                    ⏹️ إيقاف<br>السيرفر
                 </div>
             </div>
+        </div>
 
-            <div id="tab-help" class="tab-content">
-                <div class="header-banner"><div class="server-title">المساعدة والدعم</div></div>
-                <div class="status-card" style="text-align: center; padding: 30px;">
-                    <p style="color: #94a3b8; font-size: 14px; margin-bottom: 15px;">تحتاج إلى مساعدة؟ تواصل مع المالك</p>
-                    <button class="btn-main" onclick="alert('المسؤول: مهدي الظالمي')">تواصل مع المالك (مهدي الظالمي)</button>
-                </div>
+        <!-- Start Button -->
+        <button class="start-btn">▶ تشغيل السيرفر</button>
+
+        <!-- New Server Card -->
+        <a href="#" class="card purple" style="margin-bottom: 10px; width: 100%;">
+            <div class="card-content">
+                <h3 style="color: #fff;">إنشاء سيرفر جديد</h3>
+                <p>إبدأ سيرفرك الخاص الآن</p>
             </div>
+            <div class="card-icon" style="color: #00ff66;">➕</div>
+        </a>
 
-            <div id="tab-account" class="tab-content">
-                <div class="header-banner"><div class="server-title">حسابي الشخصي</div></div>
-                <div class="status-card" style="text-align: center; padding: 30px;">
-                    <p style="color: #94a3b8; font-size: 14px; margin-bottom: 15px;">تم تسجيل الدخول بنجاح</p>
-                    <button class="power-btn-red" style="width: 100%; margin: 0; padding: 14px;" onclick="location.reload()">تسجيل الخروج</button>
-                </div>
+        <!-- Bottom Banner -->
+        <div class="banner-card">
+            <div>
+                <h3 style="font-size: 15px; color: #fff; margin-bottom: 3px;">لعب بدون حدود</h3>
+                <p style="font-size: 12px; color: #00ff66;">مع DRAXOR CRAFT</p>
+                <span style="font-size: 11px; color: #bbb;">إبدأ الآن ←</span>
             </div>
-
+            <div style="font-size: 30px;">🟩⛏️</div>
         </div>
     </div>
 
-    <div class="bottom-nav" id="bottomNav">
-        <button class="nav-item active" onclick="switchTab('home', this)"><div class="nav-icon">🏠</div>الرئيسية</button>
-        <button class="nav-item" onclick="switchTab('server', this)"><div class="nav-icon">🎛️</div>السيرفر</button>
-        <button class="nav-item" onclick="switchTab('help', this)"><div class="nav-icon">🎧</div>مساعدة</button>
-        <button class="nav-item" onclick="switchTab('account', this)"><div class="nav-icon">👤</div>الحساب</button>
+    <!-- Bottom Navigation Bar -->
+    <div class="navbar">
+        <a href="#" class="nav-item active">
+            <div>🏠</div>
+            الرئيسية
+        </a>
+        <a href="#" class="nav-item">
+            <div>🎛️</div>
+            السيرفر
+        </a>
+        <a href="#" class="nav-item">
+            <div>🎧</div>
+            مساعدة
+        </a>
+        <a href="#" class="nav-item">
+            <div>👤</div>
+            الحساب
+        </a>
     </div>
 
-    <script>
-        function handleLogin() {
-            let user = document.getElementById('userInput').value;
-            let pass = document.getElementById('passInput').value;
-            if(!user || !pass) { alert('الرجاء إدخال البريد الإلكتروني وكلمة المرور!'); return; }
-            alert('تم تسجيل الدخول بنجاح! أهلاً بك');
-            document.getElementById('login-section').style.display = 'none';
-            document.getElementById('dashboard').style.display = 'block';
-            document.getElementById('bottomNav').style.display = 'flex';
-        }
-        function switchTab(tabName, element) {
-            let tabs = document.getElementsByClassName('tab-content');
-            for (let t of tabs) { t.classList.remove('active'); }
-            let items = document.getElementsByClassName('nav-item');
-            for (let i of items) { i.classList.remove('active'); }
-            document.getElementById('tab-' + tabName).classList.add('active');
-            element.classList.add('active');
-        }
-    </script>
 </body>
 </html>
+
