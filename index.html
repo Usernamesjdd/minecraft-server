@@ -3,303 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DRAXOR CRAFT - لوحة التحكم</title>
+    <title>Nex Messenger</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a0033">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: #07070f;
-            color: #fff;
-            padding-bottom: 75px;
-        }
-        .header {
-            text-align: center;
-            padding: 15px 10px;
-            background: linear-gradient(135deg, #0d0d1f, #1a0b2e);
-            border-bottom: 2px solid #8b5cf6;
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
-            margin-bottom: 12px;
-            position: relative;
-        }
-        .header-top {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-        .header h1 {
-            font-size: 22px;
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-        .header-dot {
-            width: 12px;
-            height: 12px;
-            background-color: #00ff66;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #00ff66;
-        }
-        .copy-icon-btn {
-            position: absolute;
-            left: 15px;
-            top: 15px;
-            background: #151528;
-            border: 1px solid #8b5cf6;
-            color: #fff;
-            padding: 8px;
-            border-radius: 10px;
-            font-size: 14px;
-            box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);
-        }
-        .server-status-badge {
-            display: inline-flex;
-            align-items: center;
-            background: rgba(0, 255, 102, 0.1);
-            border: 1px solid #00ff66;
-            padding: 6px 20px;
-            border-radius: 20px;
-            font-size: 13px;
-            color: #00ff66;
-            box-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
-        }
-        .container {
-            padding: 0 10px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-        .card {
-            background: #121225;
-            border-radius: 12px;
-            padding: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 0 10px rgba(0,0,0,0.6);
-            border: 1px solid rgba(255,255,255,0.06);
-            text-decoration: none;
-            color: #fff;
-        }
-        .card.purple { border-color: #8b5cf6; box-shadow: inset 0 0 12px rgba(139, 92, 246, 0.25), 0 0 10px rgba(139, 92, 246, 0.2); }
-        .card.blue { border-color: #3b82f6; box-shadow: inset 0 0 12px rgba(59, 130, 246, 0.25), 0 0 10px rgba(59, 130, 246, 0.2); }
-        .card.green { border-color: #00ff66; box-shadow: inset 0 0 12px rgba(0, 255, 102, 0.25), 0 0 10px rgba(0, 255, 102, 0.2); }
-        .card.orange { border-color: #f97316; box-shadow: inset 0 0 12px rgba(249, 115, 22, 0.25), 0 0 10px rgba(249, 115, 22, 0.2); }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Tahoma, sans-serif; }
+        body { background-color: #0d001a; color: #ffffff; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
         
-        .card-content h3 {
-            font-size: 15px;
-            margin-bottom: 2px;
-        }
-        .card-content p {
-            font-size: 11px;
-            color: #aaa;
-        }
-        .card-icon {
-            font-size: 22px;
-        }
-        .status-box {
-            background: #121225;
-            border: 1px solid #3b82f6;
-            border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 8px;
-            box-shadow: 0 0 12px rgba(59, 130, 246, 0.25);
-        }
-        .status-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-        .status-inner {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 10px;
-            align-items: center;
-        }
-        .stop-btn {
-            background: #ef4444;
-            color: white;
-            border: none;
-            padding: 12px 18px;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 13px;
-            box-shadow: 0 0 12px rgba(239, 68, 68, 0.5);
-        }
-        .start-btn {
-            background: linear-gradient(90deg, #00ff66, #10b981);
-            color: #07070f;
-            border: none;
-            width: 100%;
-            padding: 13px;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 16px;
-            text-align: center;
-            box-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
-            margin-bottom: 8px;
-            cursor: pointer;
-        }
-        .banner-card {
-            background: linear-gradient(135deg, #1b0a3a, #3b0764);
-            border: 1px solid #8b5cf6;
-            border-radius: 14px;
-            padding: 12px 15px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            box-shadow: 0 0 15px rgba(139, 92, 246, 0.35);
-        }
-        .navbar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: #0d0d1f;
-            border-top: 1px solid #8b5cf6;
-            display: flex;
-            justify-content: space-around;
-            padding: 8px 0;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.7);
-            z-index: 1000;
-        }
-        .nav-item {
-            text-align: center;
-            color: #777;
-            text-decoration: none;
-            font-size: 11px;
-        }
-        .nav-item.active {
-            color: #00ff66;
-            text-shadow: 0 0 8px rgba(0, 255, 102, 0.4);
-        }
-        .nav-item div {
-            font-size: 18px;
-            margin-bottom: 1px;
-        }
+        /* شاشة تسجيل الدخول بالاسم (نفس الماسنجر) */
+        #authScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0d001a; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; z-index: 2000; }
+        .auth-box { background: #15002b; padding: 30px; border-radius: 25px; width: 100%; max-width: 350px; border: 1px solid #4d0099; text-align: center; box-shadow: 0 0 25px rgba(102, 0, 204, 0.5); }
+        .auth-logo { width: 60px; height: 60px; background: #6600cc; border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; border: 2px solid #a64dff; }
+        .auth-box h2 { color: #e6ccff; margin-bottom: 20px; font-size: 20px; }
+        .auth-box input { width: 100%; padding: 12px 15px; margin-bottom: 15px; border-radius: 25px; border: 1px solid #4d0099; background: #26004d; color: white; outline: none; font-size: 14px; text-align: center; }
+        .auth-box button { width: 100%; padding: 12px; border-radius: 25px; border: none; background: #6600cc; color: white; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.3s; }
+        .auth-box button:hover { background: #751aff; }
+
+        /* الهيدر العلوي */
+        header { background: #15002b; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #330066; }
+        .app-title { font-size: 20px; font-weight: bold; color: #e6ccff; display: flex; align-items: center; gap: 8px; }
+        .header-icons { display: flex; gap: 15px; font-size: 18px; color: #c980ff; cursor: pointer; }
+
+        /* شريط البحث */
+        .search-box { padding: 10px 15px; background: #15002b; }
+        .search-box input { width: 100%; padding: 10px 15px; border-radius: 20px; border: 1px solid #4d0099; background: #26004d; color: white; outline: none; font-size: 14px; text-align: right; }
+
+        /* قسم القصص (Stories) */
+        .stories-container { display: flex; gap: 12px; padding: 10px 15px; overflow-x: auto; background: #15002b; border-bottom: 1px solid #330066; }
+        .story-item { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; min-width: 60px; }
+        .story-ring { width: 55px; height: 55px; border-radius: 50%; border: 2px solid #a64dff; padding: 2px; display: flex; align-items: center; justify-content: center; background: #26004d; }
+        .story-img { width: 100%; height: 100%; border-radius: 50%; background: #4b0082; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; color: white; }
+        .story-name { font-size: 11px; color: #b380ff; }
+
+        /* قائمة المحادثات والأصدقاء */
+        .chats-list { flex: 1; overflow-y: auto; background: #0d001a; }
+        .chat-item { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-bottom: 1px solid #1a0033; cursor: pointer; transition: 0.2s; }
+        .chat-item:hover { background: #15002b; }
+        .chat-avatar { width: 50px; height: 50px; border-radius: 50%; background: #4b0082; border: 2px solid #a64dff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; color: white; flex-shrink: 0; }
+        .chat-info { flex: 1; }
+        .chat-name { font-size: 15px; font-weight: bold; color: #ffffff; margin-bottom: 4px; }
+        .chat-lastmsg { font-size: 13px; color: #b380ff; }
+
+        /* شاشة المحادثة الفعلية */
+        #chatScreen { display: none; flex-direction: column; height: 100vh; position: fixed; top: 0; left: 0; width: 100%; background: #0d001a; z-index: 100; }
+        .chat-header { background: #15002b; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #330066; }
+        .back-btn { background: none; border: none; color: #c980ff; font-size: 18px; cursor: pointer; }
+        .chat-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+        .message { max-width: 75%; padding: 10px 14px; border-radius: 18px; font-size: 14px; line-height: 1.4; }
+        .message.received { background: #26004d; color: #f2e6ff; align-self: flex-start; border: 1px solid #4d0099; }
+        .message.sent { background: #6600cc; color: #ffffff; align-self: flex-end; }
+        .chat-input-area { background: #15002b; padding: 10px; display: flex; gap: 8px; align-items: center; border-top: 1px solid #330066; }
+        .chat-input-area input { flex: 1; background: #26004d; border: 1px solid #4d0099; border-radius: 20px; padding: 8px 15px; color: white; outline: none; font-size: 14px; }
+        .send-btn { background: #751aff; color: white; border: none; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <button class="copy-icon-btn">📋</button>
-        <div class="header-top">
-            <h1>DRAXOR CRAFT</h1>
-            <div class="header-dot"></div>
-        </div>
-        <div class="server-status-badge">
-            ● الخادم متصل وجاهز الآن
-        </div>
-    </div>
-
-    <div class="container">
-        <!-- Top Row Links -->
-        <div class="grid-2">
-            <a href="#" class="card blue">
-                <div class="card-content">
-                    <h3>حسابي</h3>
-                    <p>إدارة حسابك</p>
-                </div>
-                <div class="card-icon">👤</div>
-            </a>
-            <a href="#" class="card purple">
-                <div class="card-content">
-                    <h3>السيرفر</h3>
-                    <p>إدارة سيرفرك</p>
-                </div>
-                <div class="card-icon">🎛️</div>
-            </a>
-        </div>
-
-        <div class="grid-2" style="margin-bottom: 8px;">
-            <a href="#" class="card green">
-                <div class="card-content">
-                    <h3>مساعدة</h3>
-                    <p>دعم FAQ</p>
-                </div>
-                <div class="card-icon">🎧</div>
-            </a>
-            <a href="#" class="card orange">
-                <div class="card-content">
-                    <h3>التعليمات</h3>
-                    <p>كل ما تحتاج معرفته</p>
-                </div>
-                <div class="card-icon">❓</div>
-            </a>
-        </div>
-
-        <!-- Server Status Box -->
-        <div class="status-box">
-            <div class="status-header">
-                <strong>📊 حالة السيرفر</strong>
-                <span style="color: #00ff66; font-size: 13px;">● Online</span>
-            </div>
-            <div class="status-inner">
-                <div>
-                    <p style="font-size: 12px; color: #ccc; margin-bottom: 4px;">👥 لاعبين: 0/20</p>
-                    <p style="font-size: 12px; color: #ccc;">⏱️ منذ: 0h 12m</p>
-                </div>
-                <div class="stop-btn">
-                    ⏹️ إيقاف<br>السيرفر
-                </div>
-            </div>
-        </div>
-
-        <!-- Start Button -->
-        <button class="start-btn">▶ تشغيل السيرفر</button>
-
-        <!-- New Server Card -->
-        <a href="#" class="card purple" style="margin-bottom: 8px; width: 100%;">
-            <div class="card-content">
-                <h3 style="color: #fff;">إنشاء سيرفر جديد</h3>
-                <p>إبدأ سيرفرك الخاص الآن</p>
-            </div>
-            <div class="card-icon" style="color: #00ff66;">➕</div>
-        </a>
-
-        <!-- Bottom Banner -->
-        <div class="banner-card">
-            <div>
-                <h3 style="font-size: 14px; color: #fff; margin-bottom: 2px;">لعب بدون حدود</h3>
-                <p style="font-size: 11px; color: #a78bfa; margin-bottom: 4px;">مع DRAXOR CRAFT</p>
-                <span style="font-size: 11px; color: #00ff66;">إبدأ الآن ←</span>
-            </div>
-            <div style="font-size: 36px;">🟩🗡️</div>
+    <!-- شاشة تسجيل الدخول -->
+    <div id="authScreen">
+        <div class="auth-box">
+            <div class="auth-logo">N</div>
+            <h2>تسجيل دخول Nex</h2>
+            <input type="text" id="usernameInput" placeholder="أدخل اسمك الكامل...">
+            <button onclick="loginUser()">دخول إلى الماسنجر</button>
         </div>
     </div>
 
-    <!-- Bottom Navigation Bar -->
-    <div class="navbar">
-        <a href="#" class="nav-item active">
-            <div>🏠</div>
-            الرئيسية
-        </a>
-        <a href="#" class="nav-item">
-            <div>🎛️</div>
-            السيرفر
-        </a>
-        <a href="#" class="nav-item">
-            <div>🎧</div>
-            مساعدة
-        </a>
-        <a href="#" class="nav-item">
-            <div>👤</div>
-            الحساب
-        </a>
+    <!-- الواجهة الرئيسية -->
+    <div id="mainHomeScreen" style="display: none; flex-direction: column; height: 100vh;">
+        <header>
+            <div class="app-title">👑 messenger</div>
+            <div class="header-icons">
+                <span>📹</span>
+                <span>📞</span>
+                <span>➕</span>
+            </div>
+        </header>
+
+        <!-- شريط البحث -->
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="بحث عن صديق (ابحث عن مهدي أو حسين...)" onkeyup="searchFriends()">
+        </div>
+
+        <!-- قسم القصص -->
+        <div class="stories-container">
+            <div class="story-item">
+                <div class="story-ring"><div class="story-img">➕</div></div>
+                <span class="story-name">إنشاء قصة</span>
+            </div>
+            <div class="story-item" onclick="openChat('حسين علي الحاجي')">
+                <div class="story-ring"><div class="story-img" style="background:#6600cc;">ح</div></div>
+                <span class="story-name">حسين</span>
+            </div>
+            <div class="story-item" onclick="openChat('أبو فهد المعموري')">
+                <div class="story-ring"><div class="story-img" style="background:#4b0082;">أ</div></div>
+                <span class="story-name">أبو فهد</span>
+            </div>
+        </div>
+
+        <!-- قائمة الدردشات والأصدقاء -->
+        <div class="chats-list" id="chatsList">
+            <div class="chat-item" onclick="openChat('مهدي الظالمي')">
+                <div class="chat-avatar" style="background:#4b0082;">م</div>
+                <div class="chat-info">
+                    <div class="chat-name">مهدي الظالمي</div>
+                    <div class="chat-lastmsg">أهلاً بك في تطبيق Nex للمراسلة</div>
+                </div>
+            </div>
+            <div class="chat-item" onclick="openChat('حسين علي الحاجي')">
+                <div class="chat-avatar" style="background:#6600cc;">ح</div>
+                <div class="chat-info">
+                    <div class="chat-name">حسين علي الحاجي</div>
+                    <div class="chat-lastmsg">وينك شو ماكو؟</div>
+                </div>
+            </div>
+            <div class="chat-item" onclick="openChat('أبو فهد المعموري')">
+                <div class="chat-avatar" style="background:#5900b3;">أ</div>
+                <div class="chat-info">
+                    <div class="chat-name">أبو فهد المعموري</div>
+                    <div class="chat-lastmsg">تمام حبيبي تسلم</div>
+                </div>
+            </div>
+            <div class="chat-item" onclick="openChat('Jdb Hdo')">
+                <div class="chat-avatar" style="background:#751aff;">J</div>
+                <div class="chat-info">
+                    <div class="chat-name">Jdb Hdo</div>
+                    <div class="chat-lastmsg">مرحبا صديقي</div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- نافذة المحادثة الفردية -->
+    <div id="chatScreen">
+        <div class="chat-header">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="back-btn" onclick="closeChat()">⬅</button>
+                <div class="chat-avatar" id="activeChatAvatar" style="width: 35px; height: 35px; font-size: 14px;">م</div>
+                <span id="activeChatName" style="font-weight: bold; color: #e6ccff; font-size: 16px;">اسم الصديق</span>
+            </div>
+            <div style="display: flex; gap: 15px; color: #c980ff; font-size: 18px;">
+                <span>📞</span>
+                <span>📹</span>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatBox">
+            <div class="message received">أهلاً بك، تم فتح المحادثة بنجاح!</div>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="msgInput" placeholder="اكتب رسالة..." onkeypress="handleKey(event)">
+            <button class="send-btn" onclick="sendMsg()">➤</button>
+        </div>
+    </div>
+
+    <script>
+        let currentFriend = "";
+
+        function loginUser() {
+            let name = document.getElementById('usernameInput').value;
+            if(name.trim() !== "") {
+                document.getElementById('authScreen').style.display = 'none';
+                document.getElementById('mainHomeScreen').style.display = 'flex';
+            } else {
+                alert('يرجى إدخال الاسم للادخال');
+            }
+        }
+
+        function openChat(name) {
+            currentFriend = name;
+            document.getElementById('activeChatName').textContent = name;
+            document.getElementById('activeChatAvatar').textContent = name.charAt(0);
+            document.getElementById('mainHomeScreen').style.display = 'none';
+            document.getElementById('chatScreen').style.display = 'flex';
+        }
+
+        function closeChat() {
+            document.getElementById('chatScreen').style.display = 'none';
+            document.getElementById('mainHomeScreen').style.display = 'flex';
+        }
+
+        function searchFriends() {
+            let query = document.getElementById('searchInput').value.toLowerCase();
+            let items = document.querySelectorAll('.chat-item');
+            items.forEach(item => {
+                let name = item.querySelector('.chat-name').textContent.toLowerCase();
+                if(name.includes(query)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function sendMsg() {
+            let input = document.getElementById('msgInput');
+            let chatBox = document.getElementById('chatBox');
+            if(input.value.trim() !== "") {
+                let userMsg = document.createElement('div');
+                userMsg.className = 'message sent';
+                userMsg.textContent = input.value;
+                chatBox.appendChild(userMsg);
+                
+                let textVal = input.value;
+                input.value = "";
+                chatBox.scrollTop = chatBox.scrollHeight;
+
+                setTimeout(() => {
+                    let replyMsg = document.createElement('div');
+                    replyMsg.className = 'message received';
+                    replyMsg.textContent = "رد " + currentFriend + ": أهلاً وسهلاً!";
+                    chatBox.appendChild(replyMsg);
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }, 1000);
+            }
+        }
+
+        function handleKey(e) {
+            if (e.key === 'Enter') {
+                sendMsg();
+            }
+        }
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
 </body>
 </html>
