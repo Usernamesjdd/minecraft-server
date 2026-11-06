@@ -22,20 +22,24 @@
         .create-account-btn { width: 100%; padding: 13px; border-radius: 12px; border: 1px solid #6600cc; background: transparent; color: #e6ccff; font-weight: bold; font-size: 14px; cursor: pointer; margin-top: 30px; }
         .developer-credit { margin-top: 25px; font-size: 12px; color: #b380ff; text-align: center; line-height: 1.5; }
 
-        /* ================= الواجهة الرئيسية الجديدة والمميزة ================= */
-        #mainHomeScreen { display: flex; flex-direction: column; height: 100vh; width: 100%; background: #0b0014; }
-        
+        /* شاشة إنشاء حساب */
+        #registerScreen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0d001a; flex-direction: column; justify-content: center; align-items: center; padding: 20px; z-index: 2500; }
+        .reg-box { width: 100%; max-width: 360px; text-align: center; }
+        .reg-box h2 { color: #e6ccff; margin-bottom: 20px; font-size: 20px; }
+        .reg-box input { width: 100%; padding: 14px 18px; margin-bottom: 12px; border-radius: 12px; border: 1px solid #4d0099; background: #1a0033; color: white; outline: none; font-size: 15px; text-align: right; }
+        .reg-box input::placeholder { color: #8066b3; }
+
+        /* الواجهة الرئيسية */
+        #mainHomeScreen { display: none; flex-direction: column; height: 100vh; width: 100%; background: #0b0014; }
         .new-home-header { padding: 15px 20px; background: #120024; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2d0059; }
         .new-home-title { font-size: 22px; font-weight: bold; color: #d9b3ff; letter-spacing: 0.5px; }
         .new-home-badge { background: #4d0099; padding: 5px 12px; border-radius: 15px; font-size: 12px; color: #e6ccff; border: 1px solid #751aff; }
 
-        /* شريط بحث عصري */
         .new-search-area { padding: 12px 20px; background: #120024; }
         .new-search-box { display: flex; align-items: center; background: #1f003d; border-radius: 25px; padding: 8px 15px; border: 1px solid #5900b3; }
         .new-search-box input { width: 100%; background: transparent; border: none; outline: none; color: white; font-size: 14px; text-align: right; }
         .new-search-box input::placeholder { color: #9966ff; }
 
-        /* قائمة الأصدقاء بتصميم بطاقات متطورة */
         .new-chats-container { flex: 1; overflow-y: auto; padding: 10px 15px; display: flex; flex-direction: column; gap: 10px; }
         .new-chat-card { display: flex; align-items: center; justify-content: space-between; background: #16002b; padding: 12px 15px; border-radius: 16px; border: 1px solid #330066; cursor: pointer; transition: 0.2s; }
         .new-chat-card:hover { background: #200040; border-color: #6600cc; transform: translateY(-1px); }
@@ -47,7 +51,7 @@
         .card-msg { font-size: 13px; color: #b380ff; }
         .card-status { width: 10px; height: 10px; background: #00ff88; border-radius: 50%; box-shadow: 0 0 8px #00ff88; }
 
-        /* ================= شاشة المحادثة والكيبورد ================= */
+        /* شاشة المحادثة والكيبورد */
         #chatScreen { display: none; flex-direction: column; height: 100vh; width: 100%; position: fixed; top: 0; left: 0; background: #0d001a; z-index: 100; }
         .chat-header { background: #15002b; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #330066; flex-shrink: 0; }
         .back-btn { background: none; border: none; color: #c980ff; font-size: 18px; cursor: pointer; }
@@ -57,6 +61,7 @@
         .message.received { background: #26004d; color: #f2e6ff; align-self: flex-start; border: 1px solid #4d0099; }
         .message.sent { background: #6600cc; color: #ffffff; align-self: flex-end; }
         
+        /* شريط الكتابة والكيبورد أسفل المحادثة */
         .chat-input-area { background: #15002b; padding: 12px 15px; display: flex; gap: 10px; align-items: center; border-top: 1px solid #330066; flex-shrink: 0; }
         .chat-input-area input { flex: 1; background: #26004d; border: 1px solid #4d0099; border-radius: 20px; padding: 10px 15px; color: white; outline: none; font-size: 14px; text-align: right; }
         .send-btn { background: #6600cc; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; font-size: 16px; flex-shrink: 0; }
@@ -72,13 +77,26 @@
             <input type="password" id="passInput" placeholder="كلمة السر">
             <button class="login-btn" onclick="loginUser()">تسجيل الدخول</button>
             <a class="forgot-pass">هل نسيت كلمة السر؟</a>
-            <button class="create-account-btn" onclick="createAccountAlert()">إنشاء حساب جديد</button>
+            <button class="create-account-btn" onclick="showRegisterScreen()">إنشاء حساب جديد</button>
             <div class="developer-credit">صنع هذا التطبيق بيد مهدي الظالمي</div>
         </div>
     </div>
 
-    <!-- الواجهة الرئيسية الجديدة والمختلفة -->
-    <div id="mainHomeScreen" style="display: none;">
+    <!-- شاشة إنشاء حساب -->
+    <div id="registerScreen">
+        <div class="messenger-logo">✨</div>
+        <div class="reg-box">
+            <h2>إنشاء حساب جديد في Nex</h2>
+            <input type="text" id="regName" placeholder="الاسم الكامل">
+            <input type="text" id="regEmail" placeholder="رقم الهاتف أو البريد الإلكتروني">
+            <input type="password" id="regPass" placeholder="كلمة السر الجديدة">
+            <button class="login-btn" onclick="registerUser()">تسجيل وحفظ الحساب</button>
+            <button class="create-account-btn" onclick="hideRegisterScreen()" style="margin-top: 15px; border-color: #4d0099; color: #b380ff;">العودة لتسجيل الدخول</button>
+        </div>
+    </div>
+
+    <!-- الواجهة الرئيسية -->
+    <div id="mainHomeScreen">
         <div class="new-home-header">
             <div class="new-home-title">Nex Chats</div>
             <div class="new-home-badge">متصل الآن</div>
@@ -156,7 +174,7 @@
         </div>
 
         <div class="chat-input-area">
-            <input type="text" id="msgInput" placeholder="اكتب رسالة..." onkeypress="handleKey(event)">
+            <input type="text" id="msgInput" placeholder="اكتب رسالة..." onfocus="scrollToBottom()" onkeypress="handleKey(event)">
             <button class="send-btn" onclick="sendMsg()">➤</button>
         </div>
     </div>
@@ -175,10 +193,24 @@
             }
         }
 
-        function createAccountAlert() {
-            let newAcc = prompt("أدخل بريدك أو رقم هاتفك لإنشاء حساب جديد:");
-            if(newAcc) {
-                alert("تم إنشاء الحساب بنجاح! سجل دخول الآن.");
+        function showRegisterScreen() {
+            document.getElementById('registerScreen').style.display = 'flex';
+        }
+
+        function hideRegisterScreen() {
+            document.getElementById('registerScreen').style.display = 'none';
+        }
+
+        function registerUser() {
+            let name = document.getElementById('regName').value;
+            let email = document.getElementById('regEmail').value;
+            let pass = document.getElementById('regPass').value;
+            if(name.trim() !== "" && email.trim() !== "" && pass.trim() !== "") {
+                alert('تم إنشاء الحساب بنجاح! سجّل دخولك الآن.');
+                document.getElementById('registerScreen').style.display = 'none';
+                document.getElementById('emailInput').value = email;
+            } else {
+                alert('يرجى ملء جميع الحقول لإنشاء الحساب');
             }
         }
 
@@ -188,11 +220,19 @@
             document.getElementById('activeChatAvatar').textContent = name.charAt(0);
             document.getElementById('mainHomeScreen').style.display = 'none';
             document.getElementById('chatScreen').style.display = 'flex';
+            scrollToBottom();
         }
 
         function closeChat() {
             document.getElementById('chatScreen').style.display = 'none';
             document.getElementById('mainHomeScreen').style.display = 'flex';
+        }
+
+        function scrollToBottom() {
+            let chatBox = document.getElementById('chatBox');
+            setTimeout(() => {
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 300);
         }
 
         function searchFriends() {
@@ -217,16 +257,15 @@
                 userMsg.textContent = input.value;
                 chatBox.appendChild(userMsg);
                 
-                let textVal = input.value;
                 input.value = "";
-                chatBox.scrollTop = chatBox.scrollHeight;
+                scrollToBottom();
 
                 setTimeout(() => {
                     let replyMsg = document.createElement('div');
                     replyMsg.className = 'message received';
                     replyMsg.textContent = "رد " + currentFriend + ": أهلاً وسهلاً!";
                     chatBox.appendChild(replyMsg);
-                    chatBox.scrollTop = chatBox.scrollHeight;
+                    scrollToBottom();
                 }, 1000);
             }
         }
