@@ -10,32 +10,32 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: Tahoma, sans-serif; }
         body { background-color: #0d001a; color: #ffffff; display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
         
-        /* شاشة تسجيل الدخول بالاسم (نفس الماسنجر) */
+        /* شاشة تسجيل الدخول */
         #authScreen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0d001a; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; z-index: 2000; }
-        .auth-box { background: #15002b; padding: 30px; border-radius: 25px; width: 100%; max-width: 350px; border: 1px solid #4d0099; text-align: center; box-shadow: 0 0 25px rgba(102, 0, 204, 0.5); }
-        .auth-logo { width: 60px; height: 60px; background: #6600cc; border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; border: 2px solid #a64dff; }
-        .auth-box h2 { color: #e6ccff; margin-bottom: 20px; font-size: 20px; }
-        .auth-box input { width: 100%; padding: 12px 15px; margin-bottom: 15px; border-radius: 25px; border: 1px solid #4d0099; background: #26004d; color: white; outline: none; font-size: 14px; text-align: center; }
-        .auth-box button { width: 100%; padding: 12px; border-radius: 25px; border: none; background: #6600cc; color: white; font-weight: bold; font-size: 15px; cursor: pointer; transition: 0.3s; }
-        .auth-box button:hover { background: #751aff; }
+        .messenger-logo { width: 75px; height: 75px; background: linear-gradient(135deg, #a64dff 0%, #6600cc 100%); border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; font-size: 35px; color: white; box-shadow: 0 0 20px rgba(166, 77, 255, 0.4); }
+        .auth-box { width: 100%; max-width: 360px; text-align: center; }
+        .auth-box input { width: 100%; padding: 14px 18px; margin-bottom: 12px; border-radius: 12px; border: 1px solid #4d0099; background: #1a0033; color: white; outline: none; font-size: 15px; text-align: right; }
+        .auth-box input::placeholder { color: #8066b3; }
+        .login-btn { width: 100%; padding: 14px; border-radius: 12px; border: none; background: #6600cc; color: white; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; margin-top: 5px; box-shadow: 0 4px 15px rgba(102, 0, 204, 0.4); }
+        .login-btn:hover { background: #751aff; }
+        .forgot-pass { display: block; margin-top: 15px; color: #b380ff; font-size: 13px; text-decoration: none; cursor: pointer; }
+        .create-account-btn { width: 100%; padding: 13px; border-radius: 12px; border: 1px solid #6600cc; background: transparent; color: #e6ccff; font-weight: bold; font-size: 14px; cursor: pointer; margin-top: 40px; }
 
-        /* الهيدر العلوي */
-        header { background: #15002b; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #330066; }
+        /* الواجهة الرئيسية */
+        #mainHomeScreen { display: flex; flex-direction: column; height: 100vh; width: 100%; }
+        header { background: #15002b; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #330066; flex-shrink: 0; }
         .app-title { font-size: 20px; font-weight: bold; color: #e6ccff; display: flex; align-items: center; gap: 8px; }
         .header-icons { display: flex; gap: 15px; font-size: 18px; color: #c980ff; cursor: pointer; }
 
-        /* شريط البحث */
-        .search-box { padding: 10px 15px; background: #15002b; }
+        .search-box { padding: 10px 15px; background: #15002b; flex-shrink: 0; }
         .search-box input { width: 100%; padding: 10px 15px; border-radius: 20px; border: 1px solid #4d0099; background: #26004d; color: white; outline: none; font-size: 14px; text-align: right; }
 
-        /* قسم القصص (Stories) */
-        .stories-container { display: flex; gap: 12px; padding: 10px 15px; overflow-x: auto; background: #15002b; border-bottom: 1px solid #330066; }
+        .stories-container { display: flex; gap: 12px; padding: 10px 15px; overflow-x: auto; background: #15002b; border-bottom: 1px solid #330066; flex-shrink: 0; }
         .story-item { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; min-width: 60px; }
         .story-ring { width: 55px; height: 55px; border-radius: 50%; border: 2px solid #a64dff; padding: 2px; display: flex; align-items: center; justify-content: center; background: #26004d; }
         .story-img { width: 100%; height: 100%; border-radius: 50%; background: #4b0082; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; color: white; }
         .story-name { font-size: 11px; color: #b380ff; }
 
-        /* قائمة المحادثات والأصدقاء */
         .chats-list { flex: 1; overflow-y: auto; background: #0d001a; }
         .chat-item { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-bottom: 1px solid #1a0033; cursor: pointer; transition: 0.2s; }
         .chat-item:hover { background: #15002b; }
@@ -44,33 +44,38 @@
         .chat-name { font-size: 15px; font-weight: bold; color: #ffffff; margin-bottom: 4px; }
         .chat-lastmsg { font-size: 13px; color: #b380ff; }
 
-        /* شاشة المحادثة الفعلية */
-        #chatScreen { display: none; flex-direction: column; height: 100vh; position: fixed; top: 0; left: 0; width: 100%; background: #0d001a; z-index: 100; }
-        .chat-header { background: #15002b; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #330066; }
+        /* شاشة المحادثة والكيبورد الثابت بالأسفل */
+        #chatScreen { display: none; flex-direction: column; height: 100vh; width: 100%; position: fixed; top: 0; left: 0; background: #0d001a; z-index: 100; }
+        .chat-header { background: #15002b; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #330066; flex-shrink: 0; }
         .back-btn { background: none; border: none; color: #c980ff; font-size: 18px; cursor: pointer; }
+        
         .chat-messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
         .message { max-width: 75%; padding: 10px 14px; border-radius: 18px; font-size: 14px; line-height: 1.4; }
         .message.received { background: #26004d; color: #f2e6ff; align-self: flex-start; border: 1px solid #4d0099; }
         .message.sent { background: #6600cc; color: #ffffff; align-self: flex-end; }
-        .chat-input-area { background: #15002b; padding: 10px; display: flex; gap: 8px; align-items: center; border-top: 1px solid #330066; }
-        .chat-input-area input { flex: 1; background: #26004d; border: 1px solid #4d0099; border-radius: 20px; padding: 8px 15px; color: white; outline: none; font-size: 14px; }
-        .send-btn { background: #751aff; color: white; border: none; width: 35px; height: 35px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; }
+        
+        /* شريط الكتابة والكيبورد أسفل المحادثة */
+        .chat-input-area { background: #15002b; padding: 12px 15px; display: flex; gap: 10px; align-items: center; border-top: 1px solid #330066; flex-shrink: 0; }
+        .chat-input-area input { flex: 1; background: #26004d; border: 1px solid #4d0099; border-radius: 20px; padding: 10px 15px; color: white; outline: none; font-size: 14px; text-align: right; }
+        .send-btn { background: #6600cc; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; font-size: 16px; flex-shrink: 0; }
     </style>
 </head>
 <body>
 
     <!-- شاشة تسجيل الدخول -->
     <div id="authScreen">
+        <div class="messenger-logo">💬</div>
         <div class="auth-box">
-            <div class="auth-logo">N</div>
-            <h2>تسجيل دخول Nex</h2>
-            <input type="text" id="usernameInput" placeholder="أدخل اسمك الكامل...">
-            <button onclick="loginUser()">دخول إلى الماسنجر</button>
+            <input type="text" id="emailInput" placeholder="رقم الهاتف أو البريد الإلكتروني">
+            <input type="password" id="passInput" placeholder="كلمة السر">
+            <button class="login-btn" onclick="loginUser()">تسجيل الدخول</button>
+            <a class="forgot-pass">هل نسيت كلمة السر؟</a>
+            <button class="create-account-btn" onclick="createAccountAlert()">إنشاء حساب جديد</button>
         </div>
     </div>
 
     <!-- الواجهة الرئيسية -->
-    <div id="mainHomeScreen" style="display: none; flex-direction: column; height: 100vh;">
+    <div id="mainHomeScreen" style="display: none;">
         <header>
             <div class="app-title">👑 messenger</div>
             <div class="header-icons">
@@ -80,12 +85,10 @@
             </div>
         </header>
 
-        <!-- شريط البحث -->
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="بحث عن صديق (ابحث عن مهدي أو حسين...)" onkeyup="searchFriends()">
+            <input type="text" id="searchInput" placeholder="بحث عن صديق..." onkeyup="searchFriends()">
         </div>
 
-        <!-- قسم القصص -->
         <div class="stories-container">
             <div class="story-item">
                 <div class="story-ring"><div class="story-img">➕</div></div>
@@ -101,7 +104,6 @@
             </div>
         </div>
 
-        <!-- قائمة الدردشات والأصدقاء -->
         <div class="chats-list" id="chatsList">
             <div class="chat-item" onclick="openChat('مهدي الظالمي')">
                 <div class="chat-avatar" style="background:#4b0082;">م</div>
@@ -134,7 +136,7 @@
         </div>
     </div>
 
-    <!-- نافذة المحادثة الفردية -->
+    <!-- نافذة المحادثة -->
     <div id="chatScreen">
         <div class="chat-header">
             <div style="display: flex; align-items: center; gap: 10px;">
@@ -152,6 +154,7 @@
             <div class="message received">أهلاً بك، تم فتح المحادثة بنجاح!</div>
         </div>
 
+        <!-- خانة كتابة الرسائل والكيبورد -->
         <div class="chat-input-area">
             <input type="text" id="msgInput" placeholder="اكتب رسالة..." onkeypress="handleKey(event)">
             <button class="send-btn" onclick="sendMsg()">➤</button>
@@ -162,12 +165,20 @@
         let currentFriend = "";
 
         function loginUser() {
-            let name = document.getElementById('usernameInput').value;
-            if(name.trim() !== "") {
+            let email = document.getElementById('emailInput').value;
+            let pass = document.getElementById('passInput').value;
+            if(email.trim() !== "" && pass.trim() !== "") {
                 document.getElementById('authScreen').style.display = 'none';
                 document.getElementById('mainHomeScreen').style.display = 'flex';
             } else {
-                alert('يرجى إدخال الاسم للادخال');
+                alert('يرجى إدخال البريد أو رقم الهاتف وكلمة السر');
+            }
+        }
+
+        function createAccountAlert() {
+            let newAcc = prompt("أدخل بريدك أو رقم هاتفك لإنشاء حساب جديد:");
+            if(newAcc) {
+                alert("تم إنشاء الحساب بنجاح! سجل دخول الآن.");
             }
         }
 
