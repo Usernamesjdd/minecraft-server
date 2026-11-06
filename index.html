@@ -19,32 +19,35 @@
         .login-btn { width: 100%; padding: 14px; border-radius: 12px; border: none; background: #6600cc; color: white; font-weight: bold; font-size: 16px; cursor: pointer; transition: 0.3s; margin-top: 5px; box-shadow: 0 4px 15px rgba(102, 0, 204, 0.4); }
         .login-btn:hover { background: #751aff; }
         .forgot-pass { display: block; margin-top: 15px; color: #b380ff; font-size: 13px; text-decoration: none; cursor: pointer; }
-        .create-account-btn { width: 100%; padding: 13px; border-radius: 12px; border: 1px solid #6600cc; background: transparent; color: #e6ccff; font-weight: bold; font-size: 14px; cursor: pointer; margin-top: 40px; }
+        .create-account-btn { width: 100%; padding: 13px; border-radius: 12px; border: 1px solid #6600cc; background: transparent; color: #e6ccff; font-weight: bold; font-size: 14px; cursor: pointer; margin-top: 30px; }
+        .developer-credit { margin-top: 25px; font-size: 12px; color: #b380ff; text-align: center; line-height: 1.5; }
 
-        /* الواجهة الرئيسية */
-        #mainHomeScreen { display: flex; flex-direction: column; height: 100vh; width: 100%; }
-        header { background: #15002b; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #330066; flex-shrink: 0; }
-        .app-title { font-size: 20px; font-weight: bold; color: #e6ccff; display: flex; align-items: center; gap: 8px; }
-        .header-icons { display: flex; gap: 15px; font-size: 18px; color: #c980ff; cursor: pointer; }
+        /* ================= الواجهة الرئيسية الجديدة والمميزة ================= */
+        #mainHomeScreen { display: flex; flex-direction: column; height: 100vh; width: 100%; background: #0b0014; }
+        
+        .new-home-header { padding: 15px 20px; background: #120024; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #2d0059; }
+        .new-home-title { font-size: 22px; font-weight: bold; color: #d9b3ff; letter-spacing: 0.5px; }
+        .new-home-badge { background: #4d0099; padding: 5px 12px; border-radius: 15px; font-size: 12px; color: #e6ccff; border: 1px solid #751aff; }
 
-        .search-box { padding: 10px 15px; background: #15002b; flex-shrink: 0; }
-        .search-box input { width: 100%; padding: 10px 15px; border-radius: 20px; border: 1px solid #4d0099; background: #26004d; color: white; outline: none; font-size: 14px; text-align: right; }
+        /* شريط بحث عصري */
+        .new-search-area { padding: 12px 20px; background: #120024; }
+        .new-search-box { display: flex; align-items: center; background: #1f003d; border-radius: 25px; padding: 8px 15px; border: 1px solid #5900b3; }
+        .new-search-box input { width: 100%; background: transparent; border: none; outline: none; color: white; font-size: 14px; text-align: right; }
+        .new-search-box input::placeholder { color: #9966ff; }
 
-        .stories-container { display: flex; gap: 12px; padding: 10px 15px; overflow-x: auto; background: #15002b; border-bottom: 1px solid #330066; flex-shrink: 0; }
-        .story-item { display: flex; flex-direction: column; align-items: center; gap: 5px; cursor: pointer; min-width: 60px; }
-        .story-ring { width: 55px; height: 55px; border-radius: 50%; border: 2px solid #a64dff; padding: 2px; display: flex; align-items: center; justify-content: center; background: #26004d; }
-        .story-img { width: 100%; height: 100%; border-radius: 50%; background: #4b0082; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; color: white; }
-        .story-name { font-size: 11px; color: #b380ff; }
+        /* قائمة الأصدقاء بتصميم بطاقات متطورة */
+        .new-chats-container { flex: 1; overflow-y: auto; padding: 10px 15px; display: flex; flex-direction: column; gap: 10px; }
+        .new-chat-card { display: flex; align-items: center; justify-content: space-between; background: #16002b; padding: 12px 15px; border-radius: 16px; border: 1px solid #330066; cursor: pointer; transition: 0.2s; }
+        .new-chat-card:hover { background: #200040; border-color: #6600cc; transform: translateY(-1px); }
+        
+        .card-left { display: flex; align-items: center; gap: 14px; }
+        .card-avatar { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #751aff, #4b0082); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; color: white; border: 2px solid #a64dff; box-shadow: 0 0 10px rgba(117,26,255,0.3); }
+        .card-info { display: flex; flex-direction: column; gap: 4px; }
+        .card-name { font-size: 16px; font-weight: bold; color: #ffffff; }
+        .card-msg { font-size: 13px; color: #b380ff; }
+        .card-status { width: 10px; height: 10px; background: #00ff88; border-radius: 50%; box-shadow: 0 0 8px #00ff88; }
 
-        .chats-list { flex: 1; overflow-y: auto; background: #0d001a; }
-        .chat-item { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-bottom: 1px solid #1a0033; cursor: pointer; transition: 0.2s; }
-        .chat-item:hover { background: #15002b; }
-        .chat-avatar { width: 50px; height: 50px; border-radius: 50%; background: #4b0082; border: 2px solid #a64dff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; color: white; flex-shrink: 0; }
-        .chat-info { flex: 1; }
-        .chat-name { font-size: 15px; font-weight: bold; color: #ffffff; margin-bottom: 4px; }
-        .chat-lastmsg { font-size: 13px; color: #b380ff; }
-
-        /* شاشة المحادثة والكيبورد الثابت بالأسفل */
+        /* ================= شاشة المحادثة والكيبورد ================= */
         #chatScreen { display: none; flex-direction: column; height: 100vh; width: 100%; position: fixed; top: 0; left: 0; background: #0d001a; z-index: 100; }
         .chat-header { background: #15002b; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #330066; flex-shrink: 0; }
         .back-btn { background: none; border: none; color: #c980ff; font-size: 18px; cursor: pointer; }
@@ -54,7 +57,6 @@
         .message.received { background: #26004d; color: #f2e6ff; align-self: flex-start; border: 1px solid #4d0099; }
         .message.sent { background: #6600cc; color: #ffffff; align-self: flex-end; }
         
-        /* شريط الكتابة والكيبورد أسفل المحادثة */
         .chat-input-area { background: #15002b; padding: 12px 15px; display: flex; gap: 10px; align-items: center; border-top: 1px solid #330066; flex-shrink: 0; }
         .chat-input-area input { flex: 1; background: #26004d; border: 1px solid #4d0099; border-radius: 20px; padding: 10px 15px; color: white; outline: none; font-size: 14px; text-align: right; }
         .send-btn { background: #6600cc; color: white; border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-weight: bold; font-size: 16px; flex-shrink: 0; }
@@ -71,67 +73,66 @@
             <button class="login-btn" onclick="loginUser()">تسجيل الدخول</button>
             <a class="forgot-pass">هل نسيت كلمة السر؟</a>
             <button class="create-account-btn" onclick="createAccountAlert()">إنشاء حساب جديد</button>
+            <div class="developer-credit">صنع هذا التطبيق بيد مهدي الظالمي</div>
         </div>
     </div>
 
-    <!-- الواجهة الرئيسية -->
+    <!-- الواجهة الرئيسية الجديدة والمختلفة -->
     <div id="mainHomeScreen" style="display: none;">
-        <header>
-            <div class="app-title">👑 messenger</div>
-            <div class="header-icons">
-                <span>📹</span>
-                <span>📞</span>
-                <span>➕</span>
-            </div>
-        </header>
-
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="بحث عن صديق..." onkeyup="searchFriends()">
+        <div class="new-home-header">
+            <div class="new-home-title">Nex Chats</div>
+            <div class="new-home-badge">متصل الآن</div>
         </div>
 
-        <div class="stories-container">
-            <div class="story-item">
-                <div class="story-ring"><div class="story-img">➕</div></div>
-                <span class="story-name">إنشاء قصة</span>
-            </div>
-            <div class="story-item" onclick="openChat('حسين علي الحاجي')">
-                <div class="story-ring"><div class="story-img" style="background:#6600cc;">ح</div></div>
-                <span class="story-name">حسين</span>
-            </div>
-            <div class="story-item" onclick="openChat('أبو فهد المعموري')">
-                <div class="story-ring"><div class="story-img" style="background:#4b0082;">أ</div></div>
-                <span class="story-name">أبو فهد</span>
+        <div class="new-search-area">
+            <div class="new-search-box">
+                <input type="text" id="searchInput" placeholder="ابحث عن صديق في محادثاتك..." onkeyup="searchFriends()">
             </div>
         </div>
 
-        <div class="chats-list" id="chatsList">
-            <div class="chat-item" onclick="openChat('مهدي الظالمي')">
-                <div class="chat-avatar" style="background:#4b0082;">م</div>
-                <div class="chat-info">
-                    <div class="chat-name">مهدي الظالمي</div>
-                    <div class="chat-lastmsg">أهلاً بك في تطبيق Nex للمراسلة</div>
+        <div class="new-chats-container" id="chatsList">
+            <div class="new-chat-card" onclick="openChat('مهدي الظالمي')">
+                <div class="card-left">
+                    <div class="card-avatar">م</div>
+                    <div class="card-info">
+                        <div class="card-name">مهدي الظالمي</div>
+                        <div class="card-msg">أهلاً بك في تطبيق Nex للمراسلة</div>
+                    </div>
                 </div>
+                <div class="card-status"></div>
             </div>
-            <div class="chat-item" onclick="openChat('حسين علي الحاجي')">
-                <div class="chat-avatar" style="background:#6600cc;">ح</div>
-                <div class="chat-info">
-                    <div class="chat-name">حسين علي الحاجي</div>
-                    <div class="chat-lastmsg">وينك شو ماكو؟</div>
+
+            <div class="new-chat-card" onclick="openChat('حسين علي الحاجي')">
+                <div class="card-left">
+                    <div class="card-avatar" style="background: linear-gradient(135deg, #6600cc, #330066);">ح</div>
+                    <div class="card-info">
+                        <div class="card-name">حسين علي الحاجي</div>
+                        <div class="card-msg">وينك شو ماكو؟</div>
+                    </div>
                 </div>
+                <div class="card-status"></div>
             </div>
-            <div class="chat-item" onclick="openChat('أبو فهد المعموري')">
-                <div class="chat-avatar" style="background:#5900b3;">أ</div>
-                <div class="chat-info">
-                    <div class="chat-name">أبو فهد المعموري</div>
-                    <div class="chat-lastmsg">تمام حبيبي تسلم</div>
+
+            <div class="new-chat-card" onclick="openChat('أبو فهد المعموري')">
+                <div class="card-left">
+                    <div class="card-avatar" style="background: linear-gradient(135deg, #5900b3, #26004d);">أ</div>
+                    <div class="card-info">
+                        <div class="card-name">أبو فهد المعموري</div>
+                        <div class="card-msg">تمام حبيبي تسلم</div>
+                    </div>
                 </div>
+                <div class="card-status"></div>
             </div>
-            <div class="chat-item" onclick="openChat('Jdb Hdo')">
-                <div class="chat-avatar" style="background:#751aff;">J</div>
-                <div class="chat-info">
-                    <div class="chat-name">Jdb Hdo</div>
-                    <div class="chat-lastmsg">مرحبا صديقي</div>
+
+            <div class="new-chat-card" onclick="openChat('Jdb Hdo')">
+                <div class="card-left">
+                    <div class="card-avatar" style="background: linear-gradient(135deg, #8000ff, #4d0099);">J</div>
+                    <div class="card-info">
+                        <div class="card-name">Jdb Hdo</div>
+                        <div class="card-msg">مرحبا صديقي</div>
+                    </div>
                 </div>
+                <div class="card-status"></div>
             </div>
         </div>
     </div>
@@ -141,7 +142,7 @@
         <div class="chat-header">
             <div style="display: flex; align-items: center; gap: 10px;">
                 <button class="back-btn" onclick="closeChat()">⬅</button>
-                <div class="chat-avatar" id="activeChatAvatar" style="width: 35px; height: 35px; font-size: 14px;">م</div>
+                <div class="card-avatar" id="activeChatAvatar" style="width: 36px; height: 36px; font-size: 14px;">م</div>
                 <span id="activeChatName" style="font-weight: bold; color: #e6ccff; font-size: 16px;">اسم الصديق</span>
             </div>
             <div style="display: flex; gap: 15px; color: #c980ff; font-size: 18px;">
@@ -154,7 +155,6 @@
             <div class="message received">أهلاً بك، تم فتح المحادثة بنجاح!</div>
         </div>
 
-        <!-- خانة كتابة الرسائل والكيبورد -->
         <div class="chat-input-area">
             <input type="text" id="msgInput" placeholder="اكتب رسالة..." onkeypress="handleKey(event)">
             <button class="send-btn" onclick="sendMsg()">➤</button>
@@ -197,13 +197,13 @@
 
         function searchFriends() {
             let query = document.getElementById('searchInput').value.toLowerCase();
-            let items = document.querySelectorAll('.chat-item');
-            items.forEach(item => {
-                let name = item.querySelector('.chat-name').textContent.toLowerCase();
+            let cards = document.querySelectorAll('.new-chat-card');
+            cards.forEach(card => {
+                let name = card.querySelector('.card-name').textContent.toLowerCase();
                 if(name.includes(query)) {
-                    item.style.display = 'flex';
+                    card.style.display = 'flex';
                 } else {
-                    item.style.display = 'none';
+                    card.style.display = 'none';
                 }
             });
         }
